@@ -1,15 +1,43 @@
 
 <!-- <label>Start Date:</label>
 <ng-datepicker [(ngModel)]="date"></ng-datepicker>  -->
-<table>
+<!--<table>
   <tr>
     <td>
       <label>Start Date</label>
-      <material-datepicker [(date)]="startDate" rangeStart></material-datepicker>
+      <material-datepicker 
+          [(date)]="startDate" 
+          (onSelect)="onSelect($event)" 
+          dateFormat="YYYY-MM-DD" 
+          [rangeEnd]="startRangeDate">
+      </material-datepicker>
     </td>
     <td>
       <label>End Date</label>
-      <material-datepicker [(date)]="endDate"></material-datepicker>
+      <material-datepicker 
+          [(date)]="endDate" 
+          (onSelect)="onSelect($event)" 
+          dateFormat="YYYY-MM-DD" 
+          [rangeEnd]="endRangeDate">
+      </material-datepicker>
     </td>
   </tr>
-</table>
+</table>  -->
+
+
+<material-datepicker 
+      [(date)]="startDate" (onSelect)="onSelectStart($event)" dateFormat="YYYY-MM-DD" 
+      [rangeStart]="startRangeDate">
+  </material-datepicker>
+  <material-datepicker 
+      [(date)]="endDate" (onSelect)="onSelectEnd($event)" dateFormat="YYYY-MM-DD" 
+      [rangeStart]="endRangeDate">
+  </material-datepicker>
+  
+  <button (click)="setToday()">today</button>
+  <button (click)="clearDate()">reset</button>
+  <hr> {{ date }}
+  <p>
+      Mirror(disabled, DD-MM-YYYY):
+<material-datepicker placeholder="nothing is selected" disabled="true"
+[(date)]="date" [dateFormat]="formatDate"></material-datepicker>
